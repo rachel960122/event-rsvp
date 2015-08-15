@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Title:</strong>
   <%= @event.title %>
@@ -7,12 +5,12 @@
 
 <p>
   <strong>Start date:</strong>
-  <%= @event.start_date %>
+  <%= @event.start_date.strftime("%Y-%m-%d") %>
 </p>
 
 <p>
   <strong>End date:</strong>
-  <%= @event.end_date %>
+  <%= @event.end_date.strftime("%Y-%m-%d") %>
 </p>
 
 <p>
