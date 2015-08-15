@@ -36,8 +36,8 @@
     <%= f.text_area :address %>
   </div>
   <div class="field">
-    <%= f.label :organizer_id %><br>
-    <%= f.number_field :organizer_id %>
+    <%= f.label :all_tags, "Tags (separate tags by commas)" %><br>
+    <%= f.text_field :all_tags %>
   </div>
   <div class="actions">
     <%= f.submit %>

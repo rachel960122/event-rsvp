@@ -30,7 +30,12 @@
 
 <p>
   <strong>Organizer:</strong>
-  <%= @event.organizer_id %>
+  <%= User.find(@event.organizer_id).name %>
+</p>
+
+<p>
+  <strong>Tags:</strong>
+  <%= @event.all_tags %>
 </p>
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
