@@ -37,3 +37,9 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
+
+gem 'coffee-script-source', '1.8.0'
+
+gem 'bootstrap-sass', '3.3.5.0'
+
+gem 'devise', '~> 3.5.2'
