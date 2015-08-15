@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
   resources :events
 
+  get 'tags/:tag' => 'events#index', as: :tag
+
   root 'events#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

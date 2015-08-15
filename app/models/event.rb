@@ -15,4 +15,8 @@ class Event < ActiveRecord::Base
   	def all_tags
   		tags.map(&:name).join(", ")
   	end
+
+  	def self.tagged_with(tag)
+      Tag.find(tag).events
+    end
 end

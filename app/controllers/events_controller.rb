@@ -1,12 +1,16 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index]
-  #before_action :event_owner!, only: [:edit, :update, :destroy]
+  before_action :event_owner!, only: [:edit, :update, :destroy]
 
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    if params[:tag] 
+      @events = Event.tagged_with(params[:tag])
+    else
+      @events = Event.all
+    end
   end
 
   # GET /events/1
@@ -74,11 +78,13 @@ class EventsController < ApplicationController
       params.require(:event).permit(:title, :start_date, :end_date, :location, :agenda, :address, :organizer_id, :all_tags)
     end
 
-    # def event_owner!
-    #   authenticate_user!
-    #   if current_user.id != @event.organizer_id
-    #     redirect_to events_path
-    #     flash[:notice] = 'Unauthorized Access'
-    #   end
-    # end
+    def event_owner!
+      authenticate_user!
+      if current_user.id != @event.organizer_id
+        redirect_to events_path
+        flash[:notice] = 'Unauthorized Access'
+      end
+    end
+
+    
 end
