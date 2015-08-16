@@ -30,6 +30,7 @@
 
 <p>
   <strong>Organizer:</strong>
+  <%= image_tag avatar_url(@event_owner) %>
   <%= User.find(@event.organizer_id).name %>
 </p>
 
