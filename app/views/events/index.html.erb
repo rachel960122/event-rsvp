@@ -23,7 +23,7 @@
         <td><%= event.location %></td>
         <td><%= event.agenda %></td>
         <td><%= event.address %></td>
-        <td><%= raw event.tags.map {|t| link_to t.name, tag_path(t)}.join(", ") %></td>
+        <td><%= raw event.tags.map {|t| link_to t.name, tag_path(t.name)}.join(", ") %></td>
         <td><%= link_to 'Show', event %></td>
         <td><%= link_to 'Edit', edit_event_path(event) %></td>
         <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>

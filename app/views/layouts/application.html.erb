@@ -26,8 +26,15 @@
 		<% end %>
 	</div>
 
-	<div>
+	<div class="col-lg-8">
 		<%= yield %>
+	</div>
+
+	<div class="col-lg-4">
+		<h2>Search Tags</h2>
+		<% tag_cloud Event.tag_counts, %w{css1, css2, css3, css4} do |tag, classes| %>
+			<%= link_to tag.name, tag_path(tag.name), class: classes %>
+		<% end %>
 	</div>
 
 </body>

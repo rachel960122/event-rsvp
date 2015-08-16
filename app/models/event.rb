@@ -16,7 +16,11 @@ class Event < ActiveRecord::Base
   		tags.map(&:name).join(", ")
   	end
 
-  	def self.tagged_with(tag)
-      Tag.find(tag).events
+  	def self.tagged_with(tag_name)
+      Tag.find_by_name!(tag_name).events
+    end
+
+    def self.tag_counts
+      Tag.select("tags.name, count(taggings.tag_id) as count").joins(:taggings).group("taggings.tag_id")
     end
 end
