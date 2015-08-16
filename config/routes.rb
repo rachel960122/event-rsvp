@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :events
+  resources :events do
+    member do 
+      get 'join', to: 'events#join', as: 'join'
+    end
+  end
 
   get 'tags/:tag' => 'events#index', as: :tag
 

@@ -2,6 +2,8 @@ class Event < ActiveRecord::Base
 	belongs_to :organizers, class_name: "User"
 	has_many :taggings
 	has_many :tags, through: :taggings
+  has_many :attendances
+  has_many :users, :through => :attendances
 	extend FriendlyId
   	friendly_id :title, use: :slugged
 

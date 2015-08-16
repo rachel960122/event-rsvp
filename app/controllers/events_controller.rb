@@ -1,7 +1,8 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :join]
   before_action :authenticate_user!, except: [:index]
   before_action :event_owner!, only: [:edit, :update, :destroy]
+  respond_to :html
 
   # GET /events
   # GET /events.json
@@ -65,6 +66,17 @@ class EventsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def join
+    if current_user.attendances.find_by(:event_id => @event.id)
+      flash[:notice] = 'You have already sent a request'
+      redirect_to @event
+    else
+      @attendance = Attendance.join_event(current_user.id, @event.id, 'request_sent')
+      flash[:notice] = 'Request sent' if @attendance.save
+      respond_with @attendance
     end
   end
 

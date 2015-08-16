@@ -32,8 +32,8 @@
 
 	<div class="col-lg-4">
 		<h2>Search Tags</h2>
-		<% tag_cloud Event.tag_counts, ["xs", "sm", "", "lg"] do |tag, classes| %>
-			<%= link_to tag.name, tag_path(tag.name), class: "btn btn-warning btn-#{classes}" %>
+		<% tag_cloud Event.tag_counts, ["btn-xs", "btn-sm", "", "btn-lg"] do |tag, classes| %>
+			<%= link_to tag.name, tag_path(tag.name), class: "btn btn-warning #{classes}" %>
 		<% end %>
 	</div>
 
