@@ -45,3 +45,5 @@ gem 'bootstrap-sass', '3.3.5.0'
 gem 'devise', '~> 3.5.2'
 
 gem 'friendly_id', '~> 5.1.0'
+
+gem 'workflow', '~> 1.2.0'

@@ -26,4 +26,7 @@ class Event < ActiveRecord::Base
       Tag.select("tags.name, count(taggings.tag_id) as count").joins(:taggings).group("taggings.tag_id")
     end
 
+    def self.pending_requests(event_id)
+      @pending_requests = Attendance.where(:event_id => event_id, :state => 'request_sent')
+    end
 end

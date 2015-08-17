@@ -42,3 +42,15 @@
 <%= link_to 'Join', join_event_path(@event) %>
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
+
+<div>
+  <% if current_user.id == @event.organizer_id %>
+    <% if @pending_requests.present? %>
+      <% @pending_requests.each do |p| %>
+        <%= User.find(p.user_id).name %>
+        <%= link_to 'accept', accept_request_event_path(:event_id => p.event_id, :attendance_id => p.id) %>
+        <%= link_to 'reject', reject_request_event_path(:event_id => p.event_id, :attendance_id => p.id) %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
