@@ -1,0 +1,50 @@
+<div class="col-lg-8">
+	<% if @events.blank? %>
+		<h1>You have no events yet. Do you want to <%= link_to 'create one', new_event_path %>?</h1>
+	<% else %>
+		<% @events.each do |event| %>
+			<div>
+				<p>
+				  <strong>Title:</strong>
+				  <%= event.title %>
+				</p>
+
+				<p>
+				  <strong>Start date:</strong>
+				  <%= event.start_date.strftime("%Y-%m-%d") %>
+				</p>
+
+				<p>
+				  <strong>End date:</strong>
+				  <%= event.end_date.strftime("%Y-%m-%d") %>
+				</p>
+
+				<p>
+				  <strong>Location:</strong>
+				  <%= event.location %>
+				</p>
+
+				<p>
+				  <strong>Agenda:</strong>
+				  <%= event.agenda %>
+				</p>
+
+				<p>
+				  <strong>Address:</strong>
+				  <%= event.address %>
+				</p>
+
+				<p>
+				  <strong>Tags:</strong>
+				  <%= event.all_tags %>
+				</p>
+
+				<%= link_to 'Show', event %> |
+				<%= link_to 'Edit', edit_event_path(event) %> |
+				<%= link_to 'Delete', event, method: :delete, data: { confirm: 'Are you sure?' } %> |
+				<%= link_to 'Back', events_path %>
+				<hr />
+			</div>
+		<% end %>
+	<% end %>
+</div>

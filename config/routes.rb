@@ -6,6 +6,10 @@ Rails.application.routes.draw do
       get 'accept_request', to: 'events#accept_request', as: 'accept_request'
       get 'reject_request', to: 'events#reject_request', as: 'reject_request'
     end
+
+    collection do
+      get 'my_events', to: 'events#my_events', as: 'my_events'
+    end
   end
 
   get 'tags/:tag' => 'events#index', as: :tag
