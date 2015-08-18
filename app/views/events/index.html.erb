@@ -1,36 +1,46 @@
-<h1><%= link_to 'Listing events', root_path %></h1>
+<h1>Recently Created Events</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Start date</th>
-      <th>End date</th>
-      <th>Location</th>
-      <th>Agenda</th>
-      <th>Address</th>
-      <th>Organizer</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<% @events.each do |event| %>
+  <div id="event-title"><h3><%= event.title %></h3></div>
+  <div>
+    <span><strong>Start Date: </strong><%= event.start_date.strftime("%Y-%m-%d %H:%M:%S") %></span>
+    <span><strong>End Date: </strong><%= event.end_date.strftime("%Y-%m-%d %H:%M:%S") %></span>
+  </div>
 
-  <tbody>
-    <% @events.each do |event| %>
-      <tr>
-        <td><%= event.title %></td>
-        <td><%= event.start_date.strftime("%Y-%m-%d %H:%M:%S") %></td>
-        <td><%= event.end_date.strftime("%Y-%m-%d %H:%M:%S") %></td>
-        <td><%= event.location %></td>
-        <td><%= event.agenda %></td>
-        <td><%= event.address %></td>
-        <td><%= raw event.tags.map {|t| link_to t.name, tag_path(t.name)}.join(", ") %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <div>
+    <p>
+      <strong>Location: </strong>
+    </p>
+    <p><%= event.location %></p>
+  </div>
+
+  <div>
+    <p>
+      <strong>Address: </strong>
+    </p>
+    <p><%= event.address %></p>
+  </div>
+
+  <div>
+    <p>
+      <strong>Agenda: </strong>
+    </p>
+    <p><%= event.agenda %></p>
+  </div>
+
+  <div>
+    <p>
+      <strong>Tags: </strong>
+    </p>
+    <p><%= raw event.tags.map {|t| link_to t.name, tag_path(t.name)}.join(", ") %></p>
+  </div>
+
+  <div>
+    <%= link_to 'Show', event %> |
+    <%= link_to 'Edit', edit_event_path(event) %> |
+    <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </div>
+<% end %>
 
 <br>
 

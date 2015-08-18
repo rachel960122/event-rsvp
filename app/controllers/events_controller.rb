@@ -71,7 +71,10 @@ class EventsController < ApplicationController
   end
 
   def join
-    if current_user.attendances.find_by(:event_id => @event.id)
+    if current_user.id == @event.organizer_id
+      flash[:notice] = 'You can\'t join your own event!'
+      redirect_to @event
+    elsif current_user.attendances.find_by(:event_id => @event.id)
       flash[:notice] = 'You have already sent a request'
       redirect_to @event
     else

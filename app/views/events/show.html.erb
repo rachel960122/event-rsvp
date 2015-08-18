@@ -39,7 +39,9 @@
   <%= @event.all_tags %>
 </p>
 
-<%= link_to 'Join', join_event_path(@event) %>
+<% if current_user.id != @event.organizer_id %>
+  <%= link_to 'Join', join_event_path(@event) %> |
+<% end %>
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
 

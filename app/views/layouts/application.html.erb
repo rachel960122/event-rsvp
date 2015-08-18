@@ -8,24 +8,11 @@
 </head>
 <body>
 
-	<div>
-		<ul class="nav navbar-nav pull-right">
-			<% if user_signed_in? %>
-				<li><%= link_to 'My Events', my_events_events_path %></li>
-				<li><%= link_to current_user.name, edit_user_registration_path(current_user) %></li>
-				<li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
-			<% else %>
-				<li><%= link_to 'Login', new_user_session_path %></li>
-				<li><%= link_to 'Sign up', new_user_registration_path %></li>
-			<% end %>
-		</ul>
-	</div>
-
-	<div>
-		<% flash.each do |name, msg| %>
-			<%= content_tag(:div, msg, class: 'alert alert-info') %>
-		<% end %>
-	</div>
+	<%= render 'layouts/header' %>
+	
+	<% flash.each do |name, msg| %>
+		<%= content_tag(:div, msg, class: 'alert alert-info') %>
+	<% end %>
 
 	<div class="col-lg-8">
 		<%= yield %>
